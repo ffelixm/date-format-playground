@@ -1,11 +1,11 @@
 {
-    "name": "date_format_playground",
-    "short_name": "date_format_playground",
+    "name": "Dart DateFormat Playground",
+    "short_name": "Dart DateFormat Playground",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Dart DateFormat Playground",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
