@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class PlaygroundCard extends StatefulWidget {
@@ -68,7 +69,13 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: "Format string",
-                hintText: "yyyy/MM/dd HH:mm:ss"
+                hintText: "yyyy/MM/dd HH:mm:ss",
+                suffixIcon: IconButton(
+                icon: Icon(Icons.copy),
+                onPressed: () {
+                  Clipboard.setData(ClipboardData(text: dateFormatController.text));
+                },
+              ),
               ),
               style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
               controller: dateFormatController,
