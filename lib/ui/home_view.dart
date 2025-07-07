@@ -27,6 +27,21 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: constraints.maxWidth > 600 ? 600 : double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: const Placeholder(),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
