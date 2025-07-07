@@ -36,7 +36,7 @@ class HomeView extends StatelessWidget {
             child: Align(
               alignment: Alignment.topCenter,
               child: Container(
-                width: constraints.maxWidth > 600 ? 600 : double.infinity,
+                width: constraints.maxWidth > 1000 ? 1000 : double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: Column(
                   children: [
