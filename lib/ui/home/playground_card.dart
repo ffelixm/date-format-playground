@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,6 +12,26 @@ class PlaygroundCard extends StatefulWidget {
 
 class _PlaygroundCardState extends State<PlaygroundCard> {
   final dateFormatController = TextEditingController(text: "yyyy/MM/dd HH:mm:ss");
+  Timer? updateTimer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    updateTimer = Timer.periodic(
+      const Duration(milliseconds: 10),
+      (timer) {
+        if (mounted) setState(() {});
+      }
+    );
+  }
+
+  @override
+  void dispose() {
+    dateFormatController.dispose();
+    updateTimer?.cancel();
+    super.dispose();
+  }
 
   String get formattedDate {
     try {
