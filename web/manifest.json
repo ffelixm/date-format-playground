@@ -1,11 +1,11 @@
 {
     "name": "Dart DateFormat Playground",
-    "short_name": "Dart DateFormat Playground",
+    "short_name": "DateFormat Playground",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Dart DateFormat Playground",
+    "description": "Playground for DateFormat in Dart from the intl package",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
