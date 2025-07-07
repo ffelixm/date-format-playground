@@ -1,3 +1,4 @@
+import 'package:date_format_playground/ui/home/playground_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -14,6 +15,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text("Dart/Flutter DateFormat Playground"),
         actions: [
           IconButton(
             onPressed: () => onThemeModeChanged(
@@ -36,7 +38,11 @@ class HomeView extends StatelessWidget {
               child: Container(
                 width: constraints.maxWidth > 600 ? 600 : double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 8),
-                child: const Placeholder(),
+                child: Column(
+                  children: [
+                    PlaygroundCard(),
+                  ],
+                ),
               ),
             ),
           );
