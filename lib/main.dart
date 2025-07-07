@@ -1,19 +1,35 @@
+import 'package:date_format_playground/services/theme_service.dart';
 import 'package:date_format_playground/ui/home_view.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const App());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final ThemeMode themeMode = await loadThemeMode();
+
+  runApp(App(themeMode: themeMode));
 }
 
 class App extends StatefulWidget {
-  const App({super.key});
+  const App({
+    super.key,
+    required this.themeMode,
+  });
+
+  final ThemeMode themeMode;
 
   @override
   State<App> createState() => _AppState();
 }
 
 class _AppState extends State<App> {
-  ThemeMode themeMode = ThemeMode.light;
+  late ThemeMode selectedThemeMode;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedThemeMode = widget.themeMode;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +47,14 @@ class _AppState extends State<App> {
           brightness: Brightness.dark,
         ),
       ),
-      themeMode: themeMode,
+      themeMode: selectedThemeMode,
       debugShowCheckedModeBanner: false,
       home: HomeView(
-        themeMode: themeMode,
-        onThemeModeChanged: (newThemeMode) => setState(() => themeMode = newThemeMode),
+        themeMode: selectedThemeMode,
+        onThemeModeChanged: (newThemeMode) {
+          saveThemeMode(newThemeMode);
+          setState(() => selectedThemeMode = newThemeMode);
+        },
       ),
     );
   }
