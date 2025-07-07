@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class PlaygroundCard extends StatefulWidget {
-  const PlaygroundCard({super.key});
+  const PlaygroundCard({
+    super.key,
+    required this.isPaused,
+  });
+
+  final bool isPaused;
 
   @override
   State<PlaygroundCard> createState() => _PlaygroundCardState();
@@ -12,6 +17,7 @@ class PlaygroundCard extends StatefulWidget {
 
 class _PlaygroundCardState extends State<PlaygroundCard> {
   final dateFormatController = TextEditingController(text: "yyyy/MM/dd HH:mm:ss");
+  DateTime currentDateTime = DateTime.now();
   Timer? updateTimer;
 
   @override
@@ -21,7 +27,13 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
     updateTimer = Timer.periodic(
       const Duration(milliseconds: 10),
       (timer) {
-        if (mounted) setState(() {});
+        if (mounted) {
+          setState(() {
+            if (!widget.isPaused) {
+              currentDateTime = DateTime.now();
+            }
+          });
+        }
       }
     );
   }
@@ -35,7 +47,7 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
 
   String get formattedDate {
     try {
-      return DateFormat(dateFormatController.text).format(DateTime.now());
+      return DateFormat(dateFormatController.text).format(currentDateTime);
     } catch (e) {
       return "Invalid Date Format: $e";
     }

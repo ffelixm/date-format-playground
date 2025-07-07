@@ -1,7 +1,7 @@
 import 'package:date_format_playground/ui/home/playground_card.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({
     super.key,
     required this.themeMode,
@@ -12,17 +12,28 @@ class HomeView extends StatelessWidget {
   final Function(ThemeMode themeMode) onThemeModeChanged;
 
   @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  bool isUpdatePaused = false;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Dart/Flutter DateFormat Playground"),
         actions: [
           IconButton(
-            onPressed: () => onThemeModeChanged(
-              themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light,
+            onPressed: () => setState(() => isUpdatePaused = !isUpdatePaused),
+            icon: Icon(isUpdatePaused ? Icons.play_arrow_outlined : Icons.pause_outlined),
+          ),
+          IconButton(
+            onPressed: () => widget.onThemeModeChanged(
+              widget.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light,
             ),
             icon: Icon(
-              themeMode == ThemeMode.light
+              widget.themeMode == ThemeMode.light
                   ? Icons.dark_mode_outlined
                   : Icons.light_mode_outlined,
             ),
@@ -40,7 +51,9 @@ class HomeView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 child: Column(
                   children: [
-                    PlaygroundCard(),
+                    PlaygroundCard(
+                      isPaused: isUpdatePaused,
+                    ),
                   ],
                 ),
               ),
