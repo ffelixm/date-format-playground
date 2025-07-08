@@ -1,3 +1,4 @@
+import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
 import 'package:date_format_playground/ui/home/playground_card.dart';
 import 'package:date_format_playground/ui/home/reference_section.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  bool isUpdatePaused = false;
   HomeViewSection selectedSection = HomeViewSection.reference;
   String selectedLocale = "en";
 
@@ -51,9 +51,14 @@ class _HomeViewState extends State<HomeView> {
             ),
             width: 100,
           ),
-          IconButton(
-            onPressed: () => setState(() => isUpdatePaused = !isUpdatePaused),
-            icon: Icon(isUpdatePaused ? Icons.play_arrow_outlined : Icons.pause_outlined),
+          ValueListenableBuilder(
+            valueListenable: DateFormatUpdateTicker().isPaused,
+            builder: (context, isPaused, _) {
+              return IconButton(
+                onPressed: () => DateFormatUpdateTicker().togglePause(),
+                icon: Icon(isPaused ? Icons.play_arrow_outlined : Icons.pause_outlined),
+              );
+            }
           ),
           IconButton(
             onPressed: () => widget.onThemeModeChanged(
@@ -81,7 +86,6 @@ class _HomeViewState extends State<HomeView> {
                   spacing: 32,
                   children: [
                     PlaygroundCard(
-                      isPaused: isUpdatePaused,
                       locale: selectedLocale,
                     ),
                     Padding(

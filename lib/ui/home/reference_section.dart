@@ -1,5 +1,6 @@
 import 'package:date_format_playground/data/reference_data.dart';
 import 'package:date_format_playground/data/reference_models.dart';
+import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -16,8 +17,6 @@ class ReferenceSectionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-
-    final currentDateTime = DateTime.now();
 
     return Card(
       color: theme.colorScheme.secondaryContainer,
@@ -82,10 +81,13 @@ class ReferenceSectionCard extends StatelessWidget {
                     row.description,
                     style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.onSecondaryContainer),
                   ),
-                  Text(
-                    DateFormat(row.formatCode, locale).format(currentDateTime),
-                    textAlign: TextAlign.end,
-                    style: theme.textTheme.titleLarge!.copyWith(color: theme.colorScheme.onSecondaryContainer),
+                  ValueListenableBuilder(
+                    valueListenable: DateFormatUpdateTicker().currentDateTime,
+                    builder: (context, currentDateTime, _) => Text(
+                      DateFormat(row.formatCode, locale).format(currentDateTime),
+                      textAlign: TextAlign.end,
+                      style: theme.textTheme.titleLarge!.copyWith(color: theme.colorScheme.onSecondaryContainer),
+                    ),
                   ),
                 ]
               )).toList(),

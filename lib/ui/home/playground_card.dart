@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -7,11 +6,9 @@ import 'package:intl/intl.dart';
 class PlaygroundCard extends StatefulWidget {
   const PlaygroundCard({
     super.key,
-    required this.isPaused,
     required this.locale,
   });
 
-  final bool isPaused;
   final String locale;
 
   @override
@@ -20,41 +17,6 @@ class PlaygroundCard extends StatefulWidget {
 
 class _PlaygroundCardState extends State<PlaygroundCard> {
   final dateFormatController = TextEditingController(text: "yyyy/MM/dd HH:mm:ss");
-  DateTime currentDateTime = DateTime.now();
-  Timer? updateTimer;
-
-  @override
-  void initState() {
-    super.initState();
-
-    updateTimer = Timer.periodic(
-      const Duration(milliseconds: 10),
-      (timer) {
-        if (mounted) {
-          setState(() {
-            if (!widget.isPaused) {
-              currentDateTime = DateTime.now();
-            }
-          });
-        }
-      }
-    );
-  }
-
-  @override
-  void dispose() {
-    dateFormatController.dispose();
-    updateTimer?.cancel();
-    super.dispose();
-  }
-
-  String get formattedDate {
-    try {
-      return DateFormat(dateFormatController.text, widget.locale).format(currentDateTime);
-    } catch (e) {
-      return "Invalid Date Format: $e";
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +45,21 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
               controller: dateFormatController,
               onChanged: (value) => setState(() {}),
             ),
-            Text(
-              formattedDate,
-              style: theme.textTheme.displaySmall!.copyWith(color: theme.colorScheme.onPrimaryContainer),
+            ValueListenableBuilder(
+              valueListenable: DateFormatUpdateTicker().currentDateTime,
+              builder: (context, currentDateTime, _) {
+                String formattedDate;
+                try {
+                  formattedDate = DateFormat(dateFormatController.text, widget.locale).format(currentDateTime);
+                } catch (e) {
+                  formattedDate = "Invalid Date Format: $e";
+                }
+
+                return Text(
+                  formattedDate,
+                  style: theme.textTheme.displaySmall!.copyWith(color: theme.colorScheme.onPrimaryContainer),
+                );
+              }
             ),
           ],
         ),
