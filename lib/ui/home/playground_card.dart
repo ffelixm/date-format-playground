@@ -1,4 +1,5 @@
 import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
+import 'package:date_format_playground/utils/web_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +17,25 @@ class PlaygroundCard extends StatefulWidget {
 }
 
 class _PlaygroundCardState extends State<PlaygroundCard> {
-  final dateFormatController = TextEditingController(text: "yyyy/MM/dd HH:mm:ss");
+  final dateFormatController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    final formatParam = getFormatParam();
+    if (formatParam != null) {
+      dateFormatController.text = formatParam;
+    }
+
+    dateFormatController.addListener(() => updateFormatParam(dateFormatController.text));
+  }
+
+  @override
+  void dispose() {
+    dateFormatController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,21 +48,33 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
         child: Column(
           spacing: 8,
           children: [
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Format string",
-                hintText: "yyyy/MM/dd HH:mm:ss",
-                suffixIcon: IconButton(
-                icon: Icon(Icons.copy),
-                onPressed: () {
-                  Clipboard.setData(ClipboardData(text: dateFormatController.text));
-                },
-              ),
-              ),
-              style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
-              controller: dateFormatController,
-              onChanged: (value) => setState(() {}),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Format string",
+                      hintText: "yyyy/MM/dd HH:mm:ss",
+                    ),
+                    style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
+                    controller: dateFormatController,
+                    onChanged: (value) => setState(() {}),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.copy),
+                  onPressed: () {
+                    Clipboard.setData(ClipboardData(text: dateFormatController.text));
+                  },
+                ),
+                IconButton(
+                  onPressed: () {
+                    Clipboard.setData(ClipboardData(text: getFormatShareUrl(dateFormatController.text)));
+                  },
+                  icon: Icon(Icons.share),
+                )
+              ],
             ),
             ValueListenableBuilder(
               valueListenable: DateFormatUpdateTicker().currentDateTime,
