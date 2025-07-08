@@ -1,4 +1,5 @@
 import 'package:date_format_playground/ui/home/playground_card.dart';
+import 'package:date_format_playground/ui/home/reference_section.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart' show dateTimeSymbolMap;
 
@@ -101,7 +102,11 @@ class _HomeViewState extends State<HomeView> {
                           ),
                         ],
                       ),
-                    )
+                    ),
+                    switch (selectedSection) {
+                      HomeViewSection.reference => ReferenceSection(locale: selectedLocale),
+                      HomeViewSection.about => Placeholder(),
+                    }
                   ],
                 ),
               ),
