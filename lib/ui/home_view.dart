@@ -1,5 +1,6 @@
 import 'package:date_format_playground/ui/home/playground_card.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart' show dateTimeSymbolMap;
 
 enum HomeViewSection {
   reference,
@@ -23,6 +24,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   bool isUpdatePaused = false;
   HomeViewSection selectedSection = HomeViewSection.reference;
+  String selectedLocale = "en";
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,22 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         title: Text("Dart/Flutter DateFormat Playground"),
         actions: [
+          DropdownMenu(
+            dropdownMenuEntries: dateTimeSymbolMap().keys.map((l) => DropdownMenuEntry(
+              value: l,
+              label: l,
+            )).toList(),
+            initialSelection: selectedLocale,
+            onSelected: (value) {
+              if (value != null) setState(() => selectedLocale = value);
+            },
+            enableFilter: false,
+            enableSearch: false,
+            inputDecorationTheme: InputDecorationTheme(
+              border: UnderlineInputBorder()
+            ),
+            width: 100,
+          ),
           IconButton(
             onPressed: () => setState(() => isUpdatePaused = !isUpdatePaused),
             icon: Icon(isUpdatePaused ? Icons.play_arrow_outlined : Icons.pause_outlined),
@@ -61,6 +79,7 @@ class _HomeViewState extends State<HomeView> {
                   children: [
                     PlaygroundCard(
                       isPaused: isUpdatePaused,
+                      locale: selectedLocale,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),

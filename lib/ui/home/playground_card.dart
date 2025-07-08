@@ -8,9 +8,11 @@ class PlaygroundCard extends StatefulWidget {
   const PlaygroundCard({
     super.key,
     required this.isPaused,
+    required this.locale,
   });
 
   final bool isPaused;
+  final String locale;
 
   @override
   State<PlaygroundCard> createState() => _PlaygroundCardState();
@@ -48,7 +50,7 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
 
   String get formattedDate {
     try {
-      return DateFormat(dateFormatController.text).format(currentDateTime);
+      return DateFormat(dateFormatController.text, widget.locale).format(currentDateTime);
     } catch (e) {
       return "Invalid Date Format: $e";
     }
