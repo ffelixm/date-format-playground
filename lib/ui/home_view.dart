@@ -29,6 +29,8 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Dart/Flutter DateFormat Playground"),
@@ -86,19 +88,20 @@ class _HomeViewState extends State<HomeView> {
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       child: Wrap(
                         spacing: 8,
-                        alignment: WrapAlignment.spaceAround,
                         children: [
-                          ChoiceChip(
-                            label: Text("Reference"),
+                          ChoiceChip.elevated(
+                            label: Text("Reference", style: selectedSection == HomeViewSection.reference ? TextStyle(color: theme.colorScheme.onPrimaryContainer) : null),
                             selected: selectedSection == HomeViewSection.reference,
                             onSelected: (value) => setState(() => selectedSection = HomeViewSection.reference),
                             showCheckmark: false,
+                            selectedColor: theme.colorScheme.primaryContainer,
                           ),
-                          ChoiceChip(
-                            label: Text("About"),
+                          ChoiceChip.elevated(
+                            label: Text("About", style: selectedSection == HomeViewSection.about ? TextStyle(color: theme.colorScheme.onPrimaryContainer) : null),
                             selected: selectedSection == HomeViewSection.about,
                             onSelected: (value) => setState(() => selectedSection = HomeViewSection.about),
                             showCheckmark: false,
+                            selectedColor: theme.colorScheme.primaryContainer,
                           ),
                         ],
                       ),
