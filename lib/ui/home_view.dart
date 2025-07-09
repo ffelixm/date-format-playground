@@ -1,13 +1,10 @@
+import 'package:date_format_playground/data/section_data.dart';
+import 'package:date_format_playground/data/section_models.dart';
 import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
 import 'package:date_format_playground/ui/home/playground_card.dart';
 import 'package:date_format_playground/ui/home/reference_section.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart' show dateTimeSymbolMap;
-
-enum HomeViewSection {
-  reference,
-  about,
-}
 
 class HomeView extends StatefulWidget {
   const HomeView({
@@ -92,27 +89,24 @@ class _HomeViewState extends State<HomeView> {
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       child: Wrap(
                         spacing: 8,
-                        children: [
-                          ChoiceChip.elevated(
-                            label: Text("Reference", style: selectedSection == HomeViewSection.reference ? TextStyle(color: theme.colorScheme.onPrimaryContainer) : null),
-                            selected: selectedSection == HomeViewSection.reference,
-                            onSelected: (value) => setState(() => selectedSection = HomeViewSection.reference),
-                            showCheckmark: false,
-                            selectedColor: theme.colorScheme.primaryContainer,
+                        children: HomeViewSection.values.map((section) => ChoiceChip.elevated(
+                          label: Text(
+                            getSectionName(section),
+                            style: selectedSection == section ? TextStyle(color: theme.colorScheme.onPrimaryContainer) : null,
                           ),
-                          ChoiceChip.elevated(
-                            label: Text("About", style: selectedSection == HomeViewSection.about ? TextStyle(color: theme.colorScheme.onPrimaryContainer) : null),
-                            selected: selectedSection == HomeViewSection.about,
-                            onSelected: (value) => setState(() => selectedSection = HomeViewSection.about),
-                            showCheckmark: false,
-                            selectedColor: theme.colorScheme.primaryContainer,
-                          ),
-                        ],
+                          selected: selectedSection == section,
+                          onSelected: (value) => setState(() => selectedSection = section),
+                          showCheckmark: false,
+                          selectedColor: theme.colorScheme.primaryContainer,
+                        )).toList(),
                       ),
                     ),
                     switch (selectedSection) {
+                      HomeViewSection.overview => const Placeholder(),
+                      HomeViewSection.cheatsheet => const Placeholder(),
+                      HomeViewSection.skeletons => const Placeholder(),
                       HomeViewSection.reference => ReferenceSection(locale: selectedLocale),
-                      HomeViewSection.about => Placeholder(),
+                      HomeViewSection.about => const Placeholder(),
                     }
                   ],
                 ),
