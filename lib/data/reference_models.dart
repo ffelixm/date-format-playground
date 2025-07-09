@@ -38,35 +38,35 @@ enum ReferenceSectionSubsection {
 
 /// Data for a single reference section card
 class ReferenceSectionCardData {
-  /// Title of this format code card
+  /// Title of this format pattern card
   final String title;
 
-  /// [FormatType] of this format code card
+  /// [FormatType] of this format pattern card
   final FormatType formatType;
 
-  /// Basic Format code
-  final String formatCode;
+  /// Basic Format pattern
+  final String formatPattern;
 
-  /// List of rows for different format code usage cases
+  /// List of rows for different format pattern usage cases
   final List<ReferenceSectionCardRowData> rows;
 
-  ReferenceSectionCardData(this.title, this.formatType, this.formatCode, this.rows);
+  ReferenceSectionCardData(this.title, this.formatType, this.formatPattern, this.rows);
 }
 
 
 /// Data for a single row of a reference section card
 class ReferenceSectionCardRowData {
-  /// Usage case specific format code
-  final String formatCode;
+  /// Usage case specific format pattern
+  final String formatPattern;
 
   /// Description/Explainaition of this usage case
   final String description;
 
-  ReferenceSectionCardRowData(this.formatCode, this.description);
+  ReferenceSectionCardRowData(this.formatPattern, this.description);
 }
 
 
-/// Type of format code (number/text/text&number)
+/// Type of format pattern (number/text/text&number)
 enum FormatType {
   number,
   text,

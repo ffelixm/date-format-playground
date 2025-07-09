@@ -55,7 +55,7 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Format string",
-                      hintText: "yyyy/MM/dd HH:mm:ss",
+                      hintText: "Input format pattern, e.g. 'yyyy/MM/dd'",
                     ),
                     style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
                     controller: dateFormatController,

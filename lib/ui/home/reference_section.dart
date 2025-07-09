@@ -46,7 +46,7 @@ class ReferenceSectionCard extends StatelessWidget {
                 Spacer(),
                 Chip(
                   label: Text(
-                    referenceSectionCardData.formatCode,
+                    referenceSectionCardData.formatPattern,
                     style: TextStyle(fontFamily: "RobotoMono", color: theme.colorScheme.onPrimaryContainer),
                   ),
                   color: WidgetStatePropertyAll(theme.colorScheme.primaryContainer),
@@ -68,7 +68,7 @@ class ReferenceSectionCard extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Chip(
                         label: Text(
-                          row.formatCode,
+                          row.formatPattern,
                           style: TextStyle(fontFamily: "RobotoMono", color: theme.colorScheme.onSecondaryContainer),
                         ),
                         color: WidgetStatePropertyAll(
@@ -84,7 +84,7 @@ class ReferenceSectionCard extends StatelessWidget {
                   ValueListenableBuilder(
                     valueListenable: DateFormatUpdateTicker().currentDateTime,
                     builder: (context, currentDateTime, _) => Text(
-                      DateFormat(row.formatCode, locale).format(currentDateTime),
+                      DateFormat(row.formatPattern, locale).format(currentDateTime),
                       textAlign: TextAlign.end,
                       style: theme.textTheme.titleLarge!.copyWith(color: theme.colorScheme.onSecondaryContainer),
                     ),
@@ -125,7 +125,7 @@ class _ReferenceSectionState extends State<ReferenceSection> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Text(
-            "Reference of all formatting codes",
+            "Reference of all formatting patterns",
             style: theme.textTheme.titleLarge,
           ),
         ),
