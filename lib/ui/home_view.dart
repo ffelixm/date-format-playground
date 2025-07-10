@@ -21,7 +21,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  HomeViewSection selectedSection = HomeViewSection.reference;
+  HomeViewSection selectedSection = HomeViewSection.values.first;
   String selectedLocale = "en";
 
   @override
@@ -89,6 +89,7 @@ class _HomeViewState extends State<HomeView> {
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       child: Wrap(
                         spacing: 8,
+                        runSpacing: 6,
                         children: HomeViewSection.values.map((section) => ChoiceChip.elevated(
                           label: Text(
                             getSectionName(section),
