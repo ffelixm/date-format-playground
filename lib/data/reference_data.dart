@@ -23,6 +23,8 @@ String getReferenceSectionName(ReferenceSectionSubsection section) => switch (se
 
 
 /// Get reference section data for given [ReferenceSectionSubsection]
+/// 
+/// Data source: https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
 List<ReferenceSectionCardData> getReferenceSectionCardData(ReferenceSectionSubsection section) => switch (section) {
   ReferenceSectionSubsection.year => [
     ReferenceSectionCardData(
