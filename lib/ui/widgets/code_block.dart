@@ -5,9 +5,11 @@ class CodeBlock extends StatefulWidget {
   const CodeBlock({
     super.key,
     required this.code,
+    this.isTerminalCommand = false,
   });
 
   final String code;
+  final bool isTerminalCommand;
 
   @override
   State<CodeBlock> createState() => _CodeBlockState();
@@ -37,9 +39,12 @@ class _CodeBlockState extends State<CodeBlock> {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   controller: scrollController,
-                  child: SelectableText(
-                    widget.code,
-                    style: TextStyle(fontFamily: "RobotoMono"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SelectableText(
+                      widget.isTerminalCommand ? "\$ ${widget.code}" : widget.code,
+                      style: TextStyle(fontFamily: "RobotoMono"),
+                    ),
                   ),
                 ),
               ),
@@ -47,12 +52,12 @@ class _CodeBlockState extends State<CodeBlock> {
           ),
         ),
         Positioned(
-          top: 5,
-          right: 5,
+          top: 7,
+          right: 7,
           child: IconButton(
             onPressed: () => Clipboard.setData(ClipboardData(text: widget.code)),
             icon: Icon(Icons.copy),
-            iconSize: 18,
+            iconSize: 16,
           ),
         ),
       ],
