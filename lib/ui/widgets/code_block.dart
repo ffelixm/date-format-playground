@@ -26,17 +26,17 @@ class _CodeBlockState extends State<CodeBlock> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SizedBox(
-          width: double.infinity,
-          child: Card.outlined(
-            child: Scrollbar(
-              controller: scrollController,
-              thumbVisibility: true,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+        Card.outlined(
+          child: Padding(
+            padding: const EdgeInsets.all(6),
+            child: SizedBox(
+              width: double.infinity,
+              child: Scrollbar(
                 controller: scrollController,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                thumbVisibility: true,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  controller: scrollController,
                   child: SelectableText(
                     widget.code,
                     style: TextStyle(fontFamily: "RobotoMono"),
@@ -54,7 +54,7 @@ class _CodeBlockState extends State<CodeBlock> {
             icon: Icon(Icons.copy),
             iconSize: 18,
           ),
-        )
+        ),
       ],
     );
   }
