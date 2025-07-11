@@ -8,17 +8,29 @@ String getSectionName(HomeViewSection section) => switch (section) {
   HomeViewSection.about => "About",
 };
 
+/// Get title of home view section
+String getSectionTitle(HomeViewSection section) => switch (section) {
+  HomeViewSection.cheatsheet => "Cheatsheet of all format symbols",
+  HomeViewSection.skeletons => "List of available format skeletons",
+  HomeViewSection.reference => "Reference of all formatting patterns",
+  HomeViewSection.about => "About this site",
+};
+
 final helpDialogContent = """
-This webseite is intended to be a playground for date formatting in Dart/Flutter using the <a href="https://pub.dev/packages/intl">intl package</a>.
+This webseite is intended to be a playground for date formatting in Dart/Flutter
+using the <a href="https://pub.dev/packages/intl">intl package</a>.
 <br><br>
-On top you can see the playground. Input any format pattern and see the result immediately.
+On top you can see the playground. Input any format pattern and see the result
+immediately.
 <br>
-In the top right corner you can toggle light/dark mode, set the locale for all date formatting and play/pause periodic format updates.
+In the top right corner you can toggle light/dark mode, set the locale for all
+date formatting and play/pause periodic format updates.
 <br><br>
 The rest of this site is divided into 4 sections:
 <ul>
 <li><b>Cheatsheet</b>: List of all available format symbols</li>
-<li><b>Skeletons</b>: List of all available skeletons. Skeletons are presets with an own constructor and returns real localized results</li>
+<li><b>Skeletons</b>: List of all available skeletons. Skeletons are presets with
+an own constructor and returns real localized results</li>
 <li><b>Reference</b>: Full reference of all usage cases of all format symbols</li>
 <li><b>About</b>: About this app</li>
 </ul>""";

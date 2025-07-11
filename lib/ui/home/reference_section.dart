@@ -1,3 +1,5 @@
+import 'package:date_format_playground/data/app_data.dart';
+import 'package:date_format_playground/data/app_models.dart';
 import 'package:date_format_playground/data/reference_data.dart';
 import 'package:date_format_playground/data/reference_models.dart';
 import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
@@ -34,11 +36,7 @@ class ReferenceSectionCard extends StatelessWidget {
                 ),
                 Chip(
                   label: Text(
-                    switch (referenceSectionCardData.formatType) {
-                      FormatType.number => "Number",
-                      FormatType.text => "Text",
-                      FormatType.textAndNumber => "Text & Number",
-                    },
+                    getFormatTypeName(referenceSectionCardData.formatType),
                     style: TextStyle(color: theme.colorScheme.onTertiaryContainer),
                   ),
                   color: WidgetStatePropertyAll(theme.colorScheme.tertiaryContainer),
@@ -125,7 +123,7 @@ class _ReferenceSectionState extends State<ReferenceSection> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Text(
-            "Reference of all formatting patterns",
+            getSectionTitle(HomeViewSection.reference),
             style: theme.textTheme.titleLarge,
           ),
         ),
