@@ -1,4 +1,4 @@
-import 'package:date_format_playground/data/section_models.dart';
+import 'package:date_format_playground/data/app_models.dart';
 
 /// Get name of home view section
 String getSectionName(HomeViewSection section) => switch (section) {

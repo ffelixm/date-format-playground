@@ -1,5 +1,5 @@
-import 'package:date_format_playground/data/section_data.dart';
-import 'package:date_format_playground/data/section_models.dart';
+import 'package:date_format_playground/data/app_data.dart';
+import 'package:date_format_playground/data/app_models.dart';
 import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
 import 'package:date_format_playground/ui/home/playground_card.dart';
 import 'package:date_format_playground/ui/home/reference_section.dart';
