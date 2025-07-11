@@ -55,6 +55,7 @@ class _HomeViewState extends State<HomeView> {
               return IconButton(
                 onPressed: () => DateFormatUpdateTicker().togglePause(),
                 icon: Icon(isPaused ? Icons.play_arrow_outlined : Icons.pause_outlined),
+                tooltip: isPaused ? "Resume periodic formatting" : "Pause periodic formatting",
               );
             }
           ),
@@ -67,6 +68,7 @@ class _HomeViewState extends State<HomeView> {
                   ? Icons.dark_mode_outlined
                   : Icons.light_mode_outlined,
             ),
+            tooltip: widget.themeMode == ThemeMode.light ? "Switch to dark mode" : "Switch to light mode",
           ),
         ],
       ),

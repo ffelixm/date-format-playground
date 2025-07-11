@@ -58,6 +58,7 @@ class _CodeBlockState extends State<CodeBlock> {
             onPressed: () => Clipboard.setData(ClipboardData(text: widget.code)),
             icon: Icon(Icons.copy),
             iconSize: 16,
+            tooltip: "Copy code",
           ),
         ),
       ],

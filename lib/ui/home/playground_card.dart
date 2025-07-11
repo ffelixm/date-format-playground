@@ -67,12 +67,14 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
                   onPressed: () {
                     Clipboard.setData(ClipboardData(text: dateFormatController.text));
                   },
+                  tooltip: "Copy format string",
                 ),
                 IconButton(
                   onPressed: () {
                     Clipboard.setData(ClipboardData(text: getFormatShareUrl(dateFormatController.text)));
                   },
                   icon: Icon(Icons.share),
+                  tooltip: "Share format string",
                 )
               ],
             ),
