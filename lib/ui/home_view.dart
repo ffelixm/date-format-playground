@@ -1,8 +1,10 @@
 import 'package:date_format_playground/data/app_data.dart';
 import 'package:date_format_playground/data/app_models.dart';
 import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
+import 'package:date_format_playground/ui/home/cheatsheet_section.dart';
 import 'package:date_format_playground/ui/home/playground_card.dart';
 import 'package:date_format_playground/ui/home/reference_section.dart';
+import 'package:date_format_playground/ui/home/skeletons_section.dart';
 import 'package:date_format_playground/ui/widgets/html_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart' show dateTimeSymbolMap;
@@ -106,8 +108,8 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                     switch (selectedSection) {
-                      HomeViewSection.cheatsheet => const Placeholder(),
-                      HomeViewSection.skeletons => const Placeholder(),
+                      HomeViewSection.cheatsheet => CheatsheetSection(locale: selectedLocale),
+                      HomeViewSection.skeletons => SkeletonsSection(locale: selectedLocale),
                       HomeViewSection.reference => ReferenceSection(locale: selectedLocale),
                       HomeViewSection.about => const Placeholder(),
                     }
