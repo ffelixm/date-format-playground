@@ -103,7 +103,6 @@ class _HomeViewState extends State<HomeView> {
                       ),
                     ),
                     switch (selectedSection) {
-                      HomeViewSection.overview => const Placeholder(),
                       HomeViewSection.cheatsheet => const Placeholder(),
                       HomeViewSection.skeletons => const Placeholder(),
                       HomeViewSection.reference => ReferenceSection(locale: selectedLocale),
