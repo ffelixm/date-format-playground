@@ -82,7 +82,7 @@ class ReferenceSectionCard extends StatelessWidget {
                     style: theme.textTheme.bodyMedium!.copyWith(color: theme.colorScheme.onSecondaryContainer),
                   ),
                   ValueListenableBuilder(
-                    valueListenable: DateFormatUpdateTicker().currentDateTime,
+                    valueListenable: dateTimeNotifier,
                     builder: (context, currentDateTime, _) => Text(
                       DateFormat(row.formatPattern, locale).format(currentDateTime),
                       textAlign: TextAlign.end,

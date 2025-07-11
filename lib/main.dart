@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:date_format_playground/services/theme_service.dart';
+import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
 import 'package:date_format_playground/ui/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -26,11 +29,19 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   late ThemeMode selectedThemeMode;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
     selectedThemeMode = widget.themeMode;
+    _timer = startGlobalTimer();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override

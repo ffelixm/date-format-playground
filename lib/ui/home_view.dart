@@ -50,10 +50,10 @@ class _HomeViewState extends State<HomeView> {
             width: 100,
           ),
           ValueListenableBuilder(
-            valueListenable: DateFormatUpdateTicker().isPaused,
+            valueListenable: pauseNotifier,
             builder: (context, isPaused, _) {
               return IconButton(
-                onPressed: () => DateFormatUpdateTicker().togglePause(),
+                onPressed: () => pauseNotifier.value = !pauseNotifier.value,
                 icon: Icon(isPaused ? Icons.play_arrow_outlined : Icons.pause_outlined),
                 tooltip: isPaused ? "Resume periodic formatting" : "Pause periodic formatting",
               );

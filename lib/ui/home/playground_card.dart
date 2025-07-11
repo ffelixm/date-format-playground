@@ -79,7 +79,7 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
               ],
             ),
             ValueListenableBuilder(
-              valueListenable: DateFormatUpdateTicker().currentDateTime,
+              valueListenable: dateTimeNotifier,
               builder: (context, currentDateTime, _) {
                 String formattedDate;
                 try {
