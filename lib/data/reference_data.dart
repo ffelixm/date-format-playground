@@ -43,16 +43,16 @@ List<ReferenceSectionCardData> getReferenceSectionCardData(ReferenceSectionSubse
       [
         ReferenceSectionCardRowData("M", "Month in year as a number"),
         ReferenceSectionCardRowData("MM", "Month in year as a 2-digit number with leading zero"),
-        ReferenceSectionCardRowData("MMM", "Short form of month name (3 letters)"),
+        ReferenceSectionCardRowData("MMM", "Short form of month name"),
         ReferenceSectionCardRowData("MMMM", "Long name of month"),
-        ReferenceSectionCardRowData("MMMMM", "First letter of month name"),
+        ReferenceSectionCardRowData("MMMMM", "Narrow month name (locale-dependent, often one letter or abbreviation)"),
         ReferenceSectionCardRowData("MMMMMM", "6 or more characters: month in year with at least n digits, padded with leading zeros"),
       ],
     ),
     ReferenceSectionCardData(
       "Standalone month", FormatType.textAndNumber, "L",
       [
-        ReferenceSectionCardRowData("LLL", "Short form of standalone month name (3 letters)"),
+        ReferenceSectionCardRowData("LLL", "Short form of standalone month name"),
         ReferenceSectionCardRowData("LLLL", "Long standalone month name"),
         ReferenceSectionCardRowData("LLLLL", "First letter of standalone month name"),
       ],
@@ -67,11 +67,11 @@ List<ReferenceSectionCardData> getReferenceSectionCardData(ReferenceSectionSubse
       ],
     ),
     ReferenceSectionCardData(
-      "Standalone day", FormatType.number, "c",
+      "Standalone day", FormatType.text, "c",
       [
         ReferenceSectionCardRowData("ccc", "Short standalone day name"),
         ReferenceSectionCardRowData("cccc", "Long standalone day name"),
-        ReferenceSectionCardRowData("ccccc", "First letter of standalone day name"),
+        ReferenceSectionCardRowData("ccccc", "Narrow standalone month name (locale-dependent, often one letter or abbreviation)"),
       ],
     ),
     ReferenceSectionCardData(
@@ -80,11 +80,11 @@ List<ReferenceSectionCardData> getReferenceSectionCardData(ReferenceSectionSubse
         ReferenceSectionCardRowData("E", "Short form of EEE; displays short weekday name"),
         ReferenceSectionCardRowData("EEE", "Short weekday name"),
         ReferenceSectionCardRowData("EEEE", "Long weekday name"),
-        ReferenceSectionCardRowData("EEEEE", "First letter of weekday name"),
+        ReferenceSectionCardRowData("EEEEE", "Narrow weekday name (locale-dependent, often one letter or abbreviation)"),
       ],
     ),
     ReferenceSectionCardData(
-      "Day in year", FormatType.text, "D",
+      "Day in year", FormatType.number, "D",
       [
         ReferenceSectionCardRowData("D", "Day in year as a number"),
         ReferenceSectionCardRowData("DDDD", "2 or more characters: day in year as a number with at least n digits, padded with leading zeros if necessary"),
