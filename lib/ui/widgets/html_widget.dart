@@ -24,6 +24,9 @@ class HtmlWidget extends StatelessWidget {
           fontSize: fontSize != null ? FontSize(fontSize!) : null,
           margin: Margins.all(0)
         ),
+        "code": Style(
+          fontFamily: "RobotoMono"
+        ),
       },
       onLinkTap: (url, attributes, element) => launchUrlString(url!),
     );
