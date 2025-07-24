@@ -29,8 +29,9 @@ class AboutSection extends StatelessWidget {
           child: HtmlWidget(
             html: """
 This website is a playground for date formatting in Dart and Flutter. It is
-designed for exploring and playing with the available formatting options. It
-also provides a brief reference of all format symbols and formatting skeletons.
+designed to help you explore and experiment with the available formatting
+options. It also provides a brief reference of all format symbols and formatting
+skeletons.
 <br>
 The website itself is a <a href="https://www.flutter.dev">Flutter</a> project
 written entirely in <a href="https://www.dart.dev">Dart</a>.""",

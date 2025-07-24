@@ -1,7 +1,9 @@
 import 'package:date_format_playground/data/cheatsheet_models.dart';
 
-final cheatsheetNote = "The following table provides an overview about all available format symbols. "
-"Note that some of them exist as skeletons as well, but the examples below are formatted as if the symbols were part of a bigger pattern.";
+final cheatsheetNote = 
+"The following table provides an overview about all available format symbols. "
+"Note that some of these symbols also exist as skeletons, but the examples below "
+"are formatted as if the symbols were part of a larger pattern.";
 
 List<String> get cheatsheetDataTitles => [
   "Symbol",

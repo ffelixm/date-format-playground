@@ -3,9 +3,9 @@ import 'package:date_format_playground/data/skeletons_models.dart';
 final skeletonsExplaination1 = 
 "Skeletons are predefined format patterns. Each of them has its own ICU name "
 "which defines its meaning. What distinguishes them from normal format patterns "
-"is that they were parsed as a whole. Because of this they can be localized as "
-"a whole as well. In contrast to a normal pattern like <code>'M/d/y'</code>"
-"which when parsed consists of year, month and day seperated by slashes in all "
+"is that they are parsed as a whole. Because of this, they can also be localized "
+"as a whole. In contrast to a normal pattern like <code>'M/d/y'</code> which "
+"when parsed consists of year, month and day seperated by slashes in all "
 "locales, the parsing process of skeletons considers cultural differences in "
 "the presentation of dates. So the example format would be parsed as "
 "<code>7/11/2025</code> in all locales. The skeleton <code>yMd</code> would be "
@@ -13,7 +13,7 @@ final skeletonsExplaination1 =
 "the respective language."
 "<br><br>"
 "To use skeletons, just use the named constructor of <code>DateTime</code> for "
-"an specific skeleton. You can also pass in the format pattern or the ICU name "
+"a specific skeleton. You can also pass in the format pattern or the ICU name "
 "(which is available as constant in the intl library) into the <code>format</code> "
 "function:";
 
@@ -23,7 +23,7 @@ DateFormat(YEAR_NUM_MONTH_DAY, 'es').format(DateTime.now());
 DateFormat('yMd', 'fr').format(DateTime.now());""";
 
 final skeletonsExplaination2 =
-"Don't forget to initialize the locales before using them! To do this, just "
+"Don't forget to initialize locales before using them! To do this, just "
 "call <code>initializeDateFormatting()</code> in <code>main</code>.";
 
 
