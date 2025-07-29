@@ -1,5 +1,6 @@
 import 'package:date_format_playground/data/app_data.dart';
 import 'package:date_format_playground/data/app_models.dart';
+import 'package:date_format_playground/services/preferences_service.dart';
 import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
 import 'package:date_format_playground/ui/home/about_section.dart';
 import 'package:date_format_playground/ui/home/cheatsheet_section.dart';
@@ -15,10 +16,12 @@ class HomeView extends StatefulWidget {
     super.key,
     required this.themeMode,
     required this.onThemeModeChanged,
+    required this.locale,
   });
 
   final ThemeMode themeMode;
   final Function(ThemeMode themeMode) onThemeModeChanged;
+  final String locale;
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -26,7 +29,13 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   HomeViewSection selectedSection = HomeViewSection.values.first;
-  String selectedLocale = "en";
+  late String selectedLocale;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedLocale = widget.locale;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dart/Flutter DateFormat Playground"),
+        title: Text("Dart DateFormat Playground"),
         actions: [
           DropdownMenu(
             dropdownMenuEntries: dateTimeSymbolMap().keys.map((l) => DropdownMenuEntry(
@@ -43,7 +52,10 @@ class _HomeViewState extends State<HomeView> {
             )).toList(),
             initialSelection: selectedLocale,
             onSelected: (value) {
-              if (value != null) setState(() => selectedLocale = value);
+              if (value != null) {
+                PreferencesService().saveLocale(value);
+                setState(() => selectedLocale = value);
+              }
             },
             enableFilter: false,
             enableSearch: false,
@@ -56,7 +68,10 @@ class _HomeViewState extends State<HomeView> {
             valueListenable: pauseNotifier,
             builder: (context, isPaused, _) {
               return IconButton(
-                onPressed: () => pauseNotifier.value = !pauseNotifier.value,
+                onPressed: () {
+                  PreferencesService().savePausedState(!pauseNotifier.value);
+                  pauseNotifier.value = !pauseNotifier.value;
+                },
                 icon: Icon(isPaused ? Icons.play_arrow_outlined : Icons.pause_outlined),
                 tooltip: isPaused ? "Resume periodic formatting" : "Pause periodic formatting",
               );
