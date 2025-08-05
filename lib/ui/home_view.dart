@@ -129,6 +129,7 @@ class _HomeViewState extends State<HomeView> {
                       HomeViewSection.reference => ReferenceSection(locale: selectedLocale),
                       HomeViewSection.about => AboutSection(themeMode: widget.themeMode),
                     },
+                    SizedBox(height: 20),
                   ],
                 ),
               ),
