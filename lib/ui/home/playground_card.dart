@@ -1,4 +1,5 @@
 import 'package:date_format_playground/ui/dateformat_update_ticker.dart';
+import 'package:date_format_playground/ui/widgets/error_widget.dart';
 import 'package:date_format_playground/utils/web_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -85,7 +86,7 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
                 try {
                   formattedDate = DateFormat(dateFormatController.text, widget.locale).format(currentDateTime);
                 } catch (e) {
-                  formattedDate = "Invalid Date Format: $e";
+                  return ErrorMessage(error: e);
                 }
 
                 return Text(
