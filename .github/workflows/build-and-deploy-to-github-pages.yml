@@ -1,0 +1,38 @@
+name: Build and Deploy Flutter Web App
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source repo
+      uses: actions/checkout@v3
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+
+    - name: Enable web support
+      run: flutter config --enable-web
+
+    - name: Get Flutter dependencies
+      run: flutter pub get
+
+    - name: Build Flutter web with base-href
+      run: flutter build web --release --base-href=/date-format-playground/
+
+    - name: Deploy to GitHub Pages repo
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        personal_token: ${{ secrets.GITHUB_DEPLOY_TOKEN }}
+        publish_dir: ./build/web
+        commit_message: Build and deploy date-format-playground
+        publish_branch: main
+        destination_dir: date-format-playground
+        external_repository: ffelixm/ffelixm.github.io
+        user_name: github-actions[bot]
+        user_email: 41898282+github-actions[bot]@users.noreply.github.com
