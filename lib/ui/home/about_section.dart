@@ -45,29 +45,41 @@ written entirely in <a href="https://www.dart.dev">Dart</a>.""",
             style: theme.textTheme.titleMedium,
           ),
         ),
-        Row(
-          children: [
-            Expanded(
-              child: LinkCard(
-                title: "intl package",
-                subtitle: "intl package on pub.dev",
-                url: "https://pub.dev/packages/intl",
-                imageAsset: "assets/images/dart_icon.png",
-                color: theme.colorScheme.tertiaryContainer,
-                textColor: theme.colorScheme.onTertiaryContainer,
-              ),
-            ),
-            Expanded(
-              child: LinkCard(
-                title: "DateFormat documentation",
-                subtitle: "intl package documentation on pub.dev",
-                url: "https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html",
-                imageAsset: "assets/images/dart_icon.png",
-                color: theme.colorScheme.tertiaryContainer,
-                textColor: theme.colorScheme.onTertiaryContainer,
-              ),
-            ),
-          ],
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final linkCard1 = LinkCard(
+              title: "intl package",
+              subtitle: "intl package on pub.dev",
+              url: "https://pub.dev/packages/intl",
+              imageAsset: "assets/images/dart_icon.png",
+              color: theme.colorScheme.tertiaryContainer,
+              textColor: theme.colorScheme.onTertiaryContainer,
+            );
+            final linkCard2 = LinkCard(
+              title: "DateFormat documentation",
+              subtitle: "intl documentation on pub.dev",
+              url: "https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html",
+              imageAsset: "assets/images/dart_icon.png",
+              color: theme.colorScheme.tertiaryContainer,
+              textColor: theme.colorScheme.onTertiaryContainer,
+            );
+
+            if (constraints.maxWidth < 700) {
+              return Column(
+                children: [
+                  linkCard1,
+                  linkCard2,
+                ],
+              );
+            } else {
+              return Row(
+                children: [
+                  Expanded(child: linkCard1),
+                  Expanded(child: linkCard2),
+                ],
+              );
+            }
+          },
         ),
         SizedBox(height: 6),
         Padding(
@@ -77,20 +89,28 @@ written entirely in <a href="https://www.dart.dev">Dart</a>.""",
             style: theme.textTheme.titleMedium,
           ),
         ),
-        Row(
-          children: [
-            Expanded(
-              child: LinkCard(
-                title: "ffelixm",
-                subtitle: "ffelixm on GitHub",
-                url: "https://github.com/ffelixm",
-                imageAsset: themeMode == ThemeMode.light ? "assets/images/github-mark.png" : "assets/images/github-mark-white.png",
-                color: theme.colorScheme.tertiaryContainer,
-                textColor: theme.colorScheme.onTertiaryContainer,
-              ),
-            ),
-            Spacer(),
-          ],
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final linkCard = LinkCard(
+              title: "ffelixm",
+              subtitle: "ffelixm on GitHub",
+              url: "https://github.com/ffelixm",
+              imageAsset: themeMode == ThemeMode.light ? "assets/images/github-mark.png" : "assets/images/github-mark-white.png",
+              color: theme.colorScheme.tertiaryContainer,
+              textColor: theme.colorScheme.onTertiaryContainer,
+            );
+
+            if (constraints.maxWidth < 700) {
+              return linkCard;
+            } else {
+              return Row(
+                children: [
+                  Expanded(child: linkCard),
+                  Spacer(),
+                ],
+              );
+            }
+          },
         ),
       ],
     );
