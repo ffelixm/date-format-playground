@@ -18,7 +18,7 @@ String getSectionTitle(HomeViewSection section) => switch (section) {
 
 final helpDialogContent = """
 This webseite is intended to be a playground for date formatting in Dart/Flutter
-using the <a href="https://pub.dev/packages/intl">intl package</a>.
+using the intl package.
 <br><br>
 On top you can see the playground. Input any format pattern and see the result
 immediately.
