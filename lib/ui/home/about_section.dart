@@ -91,8 +91,8 @@ The website itself is a Flutter project written entirely in Dart.""",
         LayoutBuilder(
           builder: (context, constraints) {
             final linkCard = LinkCard(
-              title: "ffelixm",
-              subtitle: "ffelixm on GitHub",
+              title: "ffelixm on GitHub",
+              subtitle: "My GitHub profile",
               url: "https://github.com/ffelixm",
               imageAsset: themeMode == ThemeMode.light ? "assets/images/github-mark.png" : "assets/images/github-mark-white.png",
               color: theme.colorScheme.tertiaryContainer,
