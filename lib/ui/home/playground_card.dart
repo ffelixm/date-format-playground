@@ -55,7 +55,7 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
                   child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: "Format string",
+                      labelText: "Format pattern",
                       hintText: "Input format pattern, e.g. 'yyyy/MM/dd'",
                     ),
                     style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
@@ -68,14 +68,50 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
                   onPressed: () {
                     Clipboard.setData(ClipboardData(text: dateFormatController.text));
                   },
-                  tooltip: "Copy format string",
+                  tooltip: "Copy format pattern",
                 ),
                 IconButton(
                   onPressed: () {
-                    Clipboard.setData(ClipboardData(text: getFormatShareUrl(dateFormatController.text)));
+                    if (dateFormatController.text.isNotEmpty) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Share format pattern"),
+                            content: TextField(
+                              readOnly: true,
+                              controller: TextEditingController(text: getFormatShareUrl(dateFormatController.text)),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                suffixIcon: IconButton(
+                                  icon: Icon(Icons.copy),
+                                  onPressed: () {
+                                    Clipboard.setData(ClipboardData(text: getFormatShareUrl(dateFormatController.text)));
+                                    Navigator.of(context).pop();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text("Share URL copied to clipboard"),
+                                        behavior: SnackBarBehavior.floating,
+                                      ),
+                                    );
+                                  },
+                                  tooltip: "Copy share URL",
+                                ),
+                              ),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text("Close"),
+                              )
+                            ],
+                          );
+                        }
+                      );
+                    }
                   },
                   icon: Icon(Icons.share),
-                  tooltip: "Share format string",
+                  tooltip: "Share format pattern",
                 )
               ],
             ),
