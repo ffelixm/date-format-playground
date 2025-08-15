@@ -1,28 +1,29 @@
 import 'package:date_format_playground/data/skeletons_models.dart';
 
-final skeletonsExplaination1 = 
-"Skeletons are predefined format patterns. Each of them has its own ICU name "
-"which defines its meaning. What distinguishes them from normal format patterns "
-"is that they are parsed as a whole. Because of this, they can also be localized "
-"as a whole. In contrast to a normal pattern like <code>'M/d/y'</code> which "
-"when parsed consists of year, month and day seperated by slashes in all "
-"locales, the parsing process of skeletons considers cultural differences in "
-"the presentation of dates. So the example format would be parsed as "
-"<code>7/11/2025</code> in all locales. The skeleton <code>yMd</code> would be "
-"parsed in German for example as <code>11.7.2025</code> which fits better into "
-"the respective language."
+final skeletonsExplanation1 = 
+"Skeletons are predefined date and time format patterns, each with its own ICU "
+"name that defines its meaning. Unlike regular format patterns, skeletons are "
+"interpreted as a whole, which allows them to be fully localized across different "
+"languages and regions. "
+"By contrast, a normal pattern like <code>'M/d/y'</code> always represents the same "
+"structure—month, day, and year separated by slashes—regardless of locale. "
+"This means that the date <code>7/11/2025</code> would always look the same in all "
+"locales when using that pattern. "
+"Skeletons, however, automatically adjust to cultural date conventions. For example, "
+"the skeleton <code>yMd</code> (in English formatted as <code>7/11/2025</code>) would "
+"be formatted as <code>11.7.2025</code> in German, which aligns better with local expectations."
 "<br><br>"
-"To use skeletons, just use the named constructor of <code>DateTime</code> for "
-"a specific skeleton. You can also pass in the format pattern or the ICU name "
-"(which is available as constant in the intl library) into the <code>format</code> "
-"function:";
+"To use skeletons, call the named constructor of <code>DateFormat</code> for the desired "
+"skeleton. You can also pass a format pattern or an ICU skeleton name directly "
+"(intl library provides these as constants) to the <code>format</code> function:";
+
 
 final skeletonsExampleCode = """
 DateFormat.yMd('de').format(DateTime.now());
 DateFormat(YEAR_NUM_MONTH_DAY, 'es').format(DateTime.now());
 DateFormat('yMd', 'fr').format(DateTime.now());""";
 
-final skeletonsExplaination2 =
+final skeletonsExplanation2 =
 "Don't forget to initialize locales before using them! To do this, just "
 "call <code>initializeDateFormatting()</code> in <code>main</code>.";
 

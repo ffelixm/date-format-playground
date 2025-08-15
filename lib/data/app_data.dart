@@ -17,20 +17,20 @@ String getSectionTitle(HomeViewSection section) => switch (section) {
 };
 
 final helpDialogContent = """
-This webseite is intended to be a playground for date formatting in Dart/Flutter
+This website is a playground for experimenting with date formatting in Dart and Flutter
 using the intl package.
 <br><br>
-On top you can see the playground. Input any format pattern and see the result
-immediately.
+At the top of the page, you can find the playground. Enter any format pattern to see the results
+instantly.
 <br>
-In the top right corner you can toggle light/dark mode, set the locale for all
-date formatting and play/pause periodic format updates.
+In the top-right corner, you can toggle between light and dark modes, set the locale for all
+date formatting, and start or pause periodic format updates.
 <br><br>
-The rest of this site is divided into 4 sections:
+The rest of this site is divided into four sections:
 <ul>
-<li><b>Cheatsheet</b>: List of all available format symbols</li>
-<li><b>Skeletons</b>: List of all available skeletons. Skeletons are presets with
-an own constructor and returns real localized results</li>
-<li><b>Reference</b>: Full reference of all usage cases of all format symbols</li>
-<li><b>About</b>: About this app</li>
+<li><b>Cheatsheet</b>: A list of all available format symbols.</li>
+<li><b>Skeletons</b>: A list of all available skeletons. Skeletons are predefined patterns with
+their own constructors that return fully localized results.</li>
+<li><b>Reference</b>: A complete reference of all use cases for every format symbol.</li>
+<li><b>About</b>: Information about this app.</li>
 </ul>""";

@@ -1,6 +1,6 @@
 {
-    "name": "Dart DateFormat Playground",
-    "short_name": "Dart DateFormat Playground",
+    "name": "Dart Date Format Playground",
+    "short_name": "Dart Date Format Playground",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

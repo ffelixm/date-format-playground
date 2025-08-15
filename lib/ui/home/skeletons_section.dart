@@ -46,14 +46,14 @@ class _SkeletonsSectionState extends State<SkeletonsSection> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: HtmlWidget(
-            html: skeletonsExplaination1,
+            html: skeletonsExplanation1,
           ),
         ),
         CodeBlock(code: skeletonsExampleCode),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: HtmlWidget(
-            html: skeletonsExplaination2,
+            html: skeletonsExplanation2,
           ),
         ),
         Card(

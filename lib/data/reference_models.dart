@@ -34,7 +34,7 @@ class ReferenceSectionCardRowData {
   /// Usage case specific format pattern
   final String formatPattern;
 
-  /// Description/Explainaition of this usage case
+  /// Description/Explanaition of this usage case
   final String description;
 
   ReferenceSectionCardRowData(this.formatPattern, this.description);

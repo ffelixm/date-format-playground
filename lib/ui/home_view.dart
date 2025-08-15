@@ -43,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dart DateFormat Playground"),
+        title: Text("Dart Date Format Playground"),
         actions: [
           DropdownMenu(
             dropdownMenuEntries: localeList.map((l) => DropdownMenuEntry(
