@@ -66,7 +66,15 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
                 IconButton(
                   icon: Icon(Icons.copy),
                   onPressed: () {
-                    Clipboard.setData(ClipboardData(text: dateFormatController.text));
+                    if (dateFormatController.text.isNotEmpty) {
+                      Clipboard.setData(ClipboardData(text: dateFormatController.text));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Format pattern copied to clipboard"),
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+                    }
                   },
                   tooltip: "Copy format pattern",
                 ),
