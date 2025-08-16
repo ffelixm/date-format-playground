@@ -24,12 +24,12 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
   void initState() {
     super.initState();
 
-    final formatParam = getFormatParam();
+    final formatParam = getFormatPatternParam();
     if (formatParam != null) {
       dateFormatController.text = formatParam;
     }
 
-    dateFormatController.addListener(() => updateFormatParam(dateFormatController.text));
+    dateFormatController.addListener(() => updateFormatPattern(dateFormatController.text));
   }
 
   @override
@@ -80,13 +80,13 @@ class _PlaygroundCardState extends State<PlaygroundCard> {
                             title: Text("Share format pattern"),
                             content: TextField(
                               readOnly: true,
-                              controller: TextEditingController(text: getFormatShareUrl(dateFormatController.text)),
+                              controller: TextEditingController(text: getFormatPatternShareUrl(dateFormatController.text)),
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 suffixIcon: IconButton(
                                   icon: Icon(Icons.copy),
                                   onPressed: () {
-                                    Clipboard.setData(ClipboardData(text: getFormatShareUrl(dateFormatController.text)));
+                                    Clipboard.setData(ClipboardData(text: getFormatPatternShareUrl(dateFormatController.text)));
                                     Navigator.of(context).pop();
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
