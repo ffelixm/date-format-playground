@@ -30,7 +30,7 @@ jobs:
       with:
         personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         publish_dir: ./build/web
-        commit_message: Build and deploy date-format-playground
+        commit_message: Build and deploy
         publish_branch: main
         destination_dir: date-format-playground
         external_repository: ffelixm/ffelixm.github.io
