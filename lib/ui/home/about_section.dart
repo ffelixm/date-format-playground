@@ -90,7 +90,16 @@ The website itself is a Flutter project written entirely in Dart.""",
         ),
         LayoutBuilder(
           builder: (context, constraints) {
-            final linkCard = LinkCard(
+            final linkCard1 = LinkCard(
+              title: "Source code",
+              subtitle: "GitHub repo of this project",
+              url: "https://github.com/ffelixm/date-format-playground",
+              imageAsset: themeMode == ThemeMode.light ? "assets/images/github-mark.png" : "assets/images/github-mark-white.png",
+              color: theme.colorScheme.tertiaryContainer,
+              textColor: theme.colorScheme.onTertiaryContainer,
+            );
+
+            final linkCard2 = LinkCard(
               title: "ffelixm on GitHub",
               subtitle: "My GitHub profile",
               url: "https://github.com/ffelixm",
@@ -100,12 +109,17 @@ The website itself is a Flutter project written entirely in Dart.""",
             );
 
             if (constraints.maxWidth < 700) {
-              return linkCard;
+              return Column(
+                children: [
+                  linkCard1,
+                  linkCard2,
+                ],
+              );
             } else {
               return Row(
                 children: [
-                  Expanded(child: linkCard),
-                  Spacer(),
+                  Expanded(child: linkCard1),
+                  Expanded(child: linkCard2),
                 ],
               );
             }
